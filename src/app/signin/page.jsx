@@ -1,4 +1,4 @@
-import SignUp from "@/component/signup"
+import SignIn from "@/component/signin"
 import Image from "next/image"
 
 export default function page() {
@@ -12,10 +12,9 @@ export default function page() {
                         </div>
                     </div>
 
-                    <SignUp />
+                    <SignIn />
                 </div>
             </div>
         </section>
-
     )
 }

@@ -19,6 +19,8 @@ model user {
   email    String
   password String
   image    String
+
+  @@unique([username, email])
 }
 
 model like_history {
@@ -30,15 +32,14 @@ model post {
   id Int @id @default(autoincrement()) // 3
 }
 
-
 model comment_post {
-  id_post     Int // 3
-  id_comment  Int @id @default(autoincrement())
-  value       String
+  id_post    Int // 3
+  id_comment Int    @id @default(autoincrement())
+  value      String
 }
 
 model comment_post_replay {
-  id_post     Int
-  id_comment  Int @id
-  value       String
+  id_post    Int
+  id_comment Int    @id
+  value      String
 }
