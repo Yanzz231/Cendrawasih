@@ -8,7 +8,7 @@ export default function page() {
                 <div className="w-full bg-white rounded-lg border md:mt-0 sm:max-w-md xl:p-0 border-gray-700">
                     <div>
                         <div className="flex items-center pt-4 justify-center">
-                            <Image className="h-auto max-w-full w-24 flex rounded-lg" src="/image/Dummy.jpg" width={350} height={350} alt="image description" />
+                            <Image className="h-auto max-w-full w-24 flex rounded-lg" src="/image/Logo_Cendrawasih.png" width={350} height={350} alt="image description" />
                         </div>
                     </div>
 
