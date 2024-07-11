@@ -1,10 +1,3 @@
-"use client"
-<<<<<<< Updated upstream
-
-export default function Home() {
-  return (
-    <></>
-=======
 import Image from "next/image"
 import LoginPage from "@/component/login";
 
@@ -41,6 +34,5 @@ export default function Home() {
 </div>
 </div>
 </div>
->>>>>>> Stashed changes
   );
 }
