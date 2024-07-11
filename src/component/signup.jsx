@@ -1,14 +1,12 @@
 "use client"
 
 import { textPopUp } from "@/libs/swal"
-import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { useRef } from "react"
 
 
 export default function SignUp() {
 
-    const router = useRouter()
     const searchRef = useRef()
 
     const [input, setInput] = useState("")
@@ -43,7 +41,7 @@ export default function SignUp() {
         })
         const postUser = await response.json()
         if (postUser.status) {
-            router.replace("/signin")
+
         } else {
             if (postUser.type === "username") return textPopUp("Error", "Username Already used", "error")
             if (postUser.type === "email") return textPopUp("Error", "Email Already used", "error")

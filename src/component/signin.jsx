@@ -52,7 +52,7 @@ export default function Signin() {
                     <input ref={searchRef} value={input} onChange={handleInput} type="text" name="gmail" id="gmail" className="bg-gray-50 border border-gray-400 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="User@gmail.com" required="" />
                 </div>
                 <div>
-                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your Password</label>
+                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-black">Your Password</label>
                     <input ref={searchRef} value={input1} onChange={handleInput1} type="password" name="password" id="password" placeholder="*******" className="bg-gray-50 border border-gray-400 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required="" />
                 </div>
                 <div className="flex items-center justify-between">
