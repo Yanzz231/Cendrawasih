@@ -2,7 +2,7 @@
 
 export default function LoginPage() {
     return (
-        <div className="absolute">
+        <div>
             <button>TEST</button>
         </div>
     )

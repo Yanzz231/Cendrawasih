@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="relative">
       <button>TEST</button>
-      <div className="absolute flex mx-auto h-screen">
+      <div className="absolute">
         <LoginPage />
       </div>
     </div>
