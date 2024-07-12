@@ -14,13 +14,13 @@ export default function DetailPost({ id }) {
             })
 
             const getPost = await response.json()
-            console.log(getPost)
+            setData(getPost)
         }
         handleGet()
     }, [])
 
     return (
-        <div className=" bg-gray-50">
+        <div className=" bg-gray-50 h-screen">
             <div className="flex justify-center items-center">
                 <Image className="rounded-lg mt-4" src="/image/Dummy.jpg" alt="image description" width={350} height={350} />
             </div>
