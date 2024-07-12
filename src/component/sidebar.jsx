@@ -41,6 +41,8 @@ export default function SideBar() {
         const postData = await response.json()
         if (postData.status) {
             setUser(postData.data)
+        } else {
+            router.replace("/signin")
         }
     }
 
