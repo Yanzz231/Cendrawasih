@@ -106,10 +106,15 @@ export default function SideBar() {
                         {user.length === 0 ? (<li>
                             <a href="/signin" className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-blue-600 hover:text-white">
                                 <SignIn size={28} />
-                                
+
                                 <button className="ms-3">Sign In</button>
                             </a>
                         </li>) : (<li>
+                            <button onClick={handleSignOut} className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-blue-600 hover:text-white">
+                                <SignIn size={28} />
+
+                                <button className="ms-3">Sign Out</button>
+                            </button>
                         </li>)}
                     </ul>
                 </div>
