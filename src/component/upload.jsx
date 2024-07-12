@@ -44,7 +44,7 @@ export default function Upload() {
         setLoading(true)
 
         try {
-            const response = await fetch('https://api.imgbb.com/1/upload?key=3d0f5fadf460e330e7b5a112a0df68db', {
+            const response = await fetch('https://api.imgbb.com/1/upload?key=005938ea56bd89b0159d46ad69ea42b9', {
                 method: 'POST',
                 body: formData,
                 onprogress: (e) => {
