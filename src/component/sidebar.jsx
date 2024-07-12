@@ -69,7 +69,7 @@ export default function SideBar() {
             </button>
 
             <aside id="separator-sidebar" ref={sidebarRef} className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${button ? 'translate-x-0' : '-translate-x-full'} sm:translate-x-0`} aria-label="Sidebar">
-                <div className="h-full px-3 py-4  bg-gray-100 flex justify-between flex-col">
+                <div className="h-full px-3 py-4 bg-gray-100 flex justify-between flex-col">
                     <div>
                         <div className="flex justify-center bg-gray items-center mb-4">
                             <Image className="rounded-lg w-36 h-28" width={350} height={350} src="/image/Logo_Text.png" alt="" />
@@ -110,10 +110,6 @@ export default function SideBar() {
                                 <button className="ms-3">Sign In</button>
                             </a>
                         </li>) : (<li>
-                            <a className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-blue-600 hover:text-white">
-                                <SignOut size={28} />
-                                <button onClick={handleSignOut} className="ms-3">Sign Out</button>
-                            </a>
                         </li>)}
                     </ul>
                 </div>
