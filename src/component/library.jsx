@@ -9,7 +9,7 @@ export default function Library(data) {
 
             {data.data.map((res, index) => {
                 return (<div key={index}>
-                    <Link className="relative group" href={`/images/`}>
+                    <Link className="relative group" href={`/images/${res.id}`}>
                         <div className="flex items-center">
                             <div className="absolute rounded left-1 bottom-1 bg-color-accent p-1 text-xl flex items-center gap-1 font-bold z-20 transition-opacity duration-300 group-hover:opacity-100 opacity-0">{res.title}</div>
                             {data.edit ? (<button className="absolute rounded right-1 top-1 bg-color-accent p-1 text-xl flex items-center gap-1 font-bold z-20 transition-opacity duration-300 group-hover:opacity-100 opacity-0"><List size={32} /></button>) : ""}

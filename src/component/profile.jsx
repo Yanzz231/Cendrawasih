@@ -32,7 +32,7 @@ export default function Profile() {
     }, [])
 
     return (
-        <div className="bg-gray-50">
+        <div className="bg-gray-50 sm:ml-64">
             <div className="justify-center flex">
                 {user.image === "defaultPicture" ? (<Image className="rounded-full w-44 h-44 mt-8 justify-center flex text-center" src="/image/user.jpg" width={350} height={350} alt="image description" />) :
                     (<Image className="rounded-full w-44 h-44 mt-8 justify-center flex text-center" src={user.image} width={350} height={350} alt="image description" />)}
