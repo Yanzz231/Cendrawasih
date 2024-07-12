@@ -94,7 +94,7 @@ export default function SideBar() {
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg group hover:bg-blue-600 hover:text-white">
+                                <a href="/profile" className="flex items-center p-2 text-gray-900 rounded-lg group hover:bg-blue-600 hover:text-white">
                                     <User size={28} />
                                     <span className="flex-1 ms-3 whitespace-nowrap">Profile</span>
                                 </a>
