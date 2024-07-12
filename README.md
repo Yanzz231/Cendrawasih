@@ -3,8 +3,9 @@
 <p align="center">
   <img src="./images/Logo_Text.png" width="550" />
 </p>
- 
-<p align="center">Logo.</p>
+
+<p align="center">Logo Candrawasih.</p>
+<p align="center">This project inspiration come from sosial media website.</p>
 
 ## Sign In Page
 <p align="center">
