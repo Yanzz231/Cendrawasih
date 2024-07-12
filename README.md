@@ -47,5 +47,10 @@ npm run build
 npm start
 ```
 
+```bash
+DATABASE_URL="mysql://username:password@localhost:port/project_garuda"
+```
+<p>Please change a username, password, and port DATABASE_URL in .env</p>
+
 ## For Information
 <p align="center">Please start a MySQL and Apache in XAMPP Control Panel.</p>
