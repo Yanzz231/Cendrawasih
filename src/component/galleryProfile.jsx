@@ -37,14 +37,11 @@ export default function GalleryProfile() {
     useEffect(() => {
         const fetchData = async () => {
             if (first) {
-                console.log(1)
                 handleData()
                 setFirst(false)
                 setLoading(false)
             }
             if (loop) {
-                console.log(2)
-
                 handleData("loop")
                 setLoop(false)
                 setLoading(false)

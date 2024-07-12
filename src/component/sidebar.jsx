@@ -86,12 +86,6 @@ export default function SideBar() {
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg group hover:bg-blue-600 hover:text-white">
-                                    <Globe size={28} />
-                                    <span className="flex-1 ms-3 whitespace-nowrap">Explore</span>
-                                </a>
-                            </li>
-                            <li>
                                 <a href="/create" className="flex items-center p-2 text-gray-900 rounded-lg group hover:bg-blue-600 hover:text-white">
                                     <FilePlus size={28} />
                                     <span className="flex-1 ms-3 whitespace-nowrap">Create</span>
@@ -117,7 +111,7 @@ export default function SideBar() {
                             <button onClick={handleSignOut} className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-blue-600 hover:text-white">
                                 <SignIn size={28} />
 
-                                <button className="ms-3">Sign Out</button>
+                                <button onClick={handleSignOut} className="ms-3">Sign Out</button>
                             </button>
                         </li>)}
                     </ul>

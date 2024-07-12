@@ -24,8 +24,8 @@ model user {
 }
 
 model like_history {
-  id_username String @id // 1
-  id_post     String //3
+  id_username Int @id // 1
+  id_post     Int //3
 }
 
 model post {
@@ -38,15 +38,8 @@ model post {
 }
 
 model comment_post {
-  id_post    Int // 3
-  id_comment Int    @id @default(autoincrement())
-  value      String
-  time       Int
-}
-
-model comment_post_replay {
-  id_post    Int
-  id_comment Int    @id
-  value      String
-  time       Int
+  id       Int    @id @default(autoincrement())
+  id_post  Int
+  username String
+  value    String
 }

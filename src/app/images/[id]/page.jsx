@@ -2,7 +2,9 @@ import DetailPost from "@/component/detailPost"
 
 export default function page({ params: { id } }) {
   return (
-    <DetailPost id={id} />
+    <div className="bg-gray-50 h-screen">
+      <DetailPost id={id} />
+    </div>
   )
 }
 

@@ -83,7 +83,7 @@ export default function Upload() {
 
             const data = await response.json();
 
-            const dataPost = { image: data.data.url.replace("https://i.ibb.co", "https://i.ibb.co.com"), title: input, description: input1, like: 0, id_user: user.id}
+            const dataPost = { image: data.data.url.replace("https://i.ibb.co", "https://i.ibb.co.com"), title: input, description: input1, like: 0, id_user: user.id }
             console.log(dataPost)
             const responsePost = await fetch('/api/post/', {
                 method: "POST",
@@ -142,7 +142,7 @@ export default function Upload() {
                     <button type="submit" className="justify-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 w-full sm:w-1/2 text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={handleUpload} disabled={loading}>
                         {loading ? 'Uploading...' : 'Post'}
                     </button>
-                    {loading && (
+                    {/* {loading && (
                         <div className="mt-4 flex justify-center items-center">
                             <div className="relative w-full sm:w-1/2">
                                 <div className="w-full bg-gray-200 h-2 rounded-full">
@@ -151,7 +151,7 @@ export default function Upload() {
                                 <p className="text-center text-gray-500 mt-2">{uploadProgress}%</p>
                             </div>
                         </div>
-                    )}
+                    )} */}
                 </div>
             </div>
         </div>

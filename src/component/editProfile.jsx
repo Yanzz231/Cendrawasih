@@ -2,16 +2,42 @@
 
 import { textPopUp } from "@/libs/swal"
 import Image from "next/image"
-import { useRef, useState } from "react"
+import { useRouter } from "next/navigation"
+import { useRef, useState, useEffect } from "react"
 
 export default function EditProfile() {
 
     const inputRef = useRef()
+    const router = useRouter()
 
     const [input, setInput] = useState("")
     const [input1, setInput1] = useState("")
     const [preview, setPreview] = useState(null)
     const [file, setFile] = useState(null)
+    const [loading, setLoading] = useState(false)
+    const [user, setUser] = useState([])
+
+    const checkUser = async (user, pass) => {
+        const data = { username: user, password: pass }
+        const response = await fetch("/api/signin", {
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+
+        const postData = await response.json()
+        if (postData.status) {
+            setUser(postData.data[0])
+        }
+    }
+
+    useEffect(() => {
+        const getAccount = localStorage.getItem('username');
+        const getPassword = localStorage.getItem('password');
+
+        if (getAccount !== null || getPassword !== null) {
+            checkUser(getAccount, getPassword)
+        }
+    }, []);
 
 
     const handleInput = (event) => {
@@ -25,32 +51,46 @@ export default function EditProfile() {
     const handleSubmit = async (event) => {
         event.preventDefault()
         if (!file) return textPopUp("Error", "Please upload image first", "error")
-        if (input.length < 5 || input1.length < 10) return textPopUp("Error", "Fill the empty one", "error")
+        if (input.length < 3 || input1.length < 3) return textPopUp("Error", "Fill the empty one", "error")
+        setLoading(true)
         const formData = new FormData();
         formData.append('image', file);
 
-        const response = await fetch('https://api.imgbb.com/1/upload?key=ab9b33a25718ee58d1cae657b972f189', {
-            method: 'POST',
-            body: formData,
-            onprogress: (e) => {
-                console.log(e)
-                const progress = Math.round((e.loaded * 100) / e.total);
-                setUploadProgress(progress);
-            },
-        });
+        try {
+            const response = await fetch('https://api.imgbb.com/1/upload?key=ab9b33a25718ee58d1cae657b972f189', {
+                method: 'POST',
+                body: formData,
+                onprogress: (e) => {
+                    console.log(e)
+                    const progress = Math.round((e.loaded * 100) / e.total);
+                    setUploadProgress(progress);
+                },
+            });
 
-        
-        const dataPost = await response.json();
 
-        const dataResult = { image: dataPost.data.url.replace("https://i.ibb.co", "https://i.ibb.co.com"), username: input, email: input1 }
+            const dataPost = await response.json();
 
-        console.log(input, input1)
+            const dataResult = { image: dataPost.data.url.replace("https://i.ibb.co", "https://i.ibb.co.com"), username: input, email: input1, id: user.id }
 
-        setInput("")
-        setInput1("")
-        setPreview(null)
-        setFile(null)
-        setUploadProgress(0)
+            const responseEdit = await fetch('/api/editprofile', {
+                method: "POST",
+                body: JSON.stringify(dataResult)
+            })
+
+            router.replace("/profile")
+
+            localStorage.setItem("username", input)
+
+            setInput("")
+            setInput1("")
+            setPreview(null)
+            setFile(null)
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            textPopUp("Error", "Upload failed", "error")
+        } finally {
+            setLoading(false)
+        }
     }
 
     const handleFileChange = (e) => {
@@ -96,7 +136,7 @@ export default function EditProfile() {
                             <textarea ref={inputRef} value={input1} onChange={handleInput1} name="about_you" placeholder="User@gmail.com" className="bg-gray-50 border border-gray-400 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required="" />
                         </div>
 
-                        <button type="submit" className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 w-full text-black bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Submit</button>
+                        <button type="submit" className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 w-full text-black bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">{loading ? 'Uploading...' : 'Submit'}</button>
 
                     </form>
                 </div>
