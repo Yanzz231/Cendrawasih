@@ -1,6 +1,6 @@
 "use client"
 
-import { House, Globe, FilePlus, User, SignIn, SignOut } from "@phosphor-icons/react"
+import { House, Globe, FilePlus, User, SignIn, SignOut, HandsClapping } from "@phosphor-icons/react"
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
@@ -100,21 +100,23 @@ export default function SideBar() {
                         </ul>
                     </div>
 
-                    <ul className="pt-4 mt-4 space-y-2 font-medium">
-                        {user.length === 0 ? (<li>
-                            <a href="/signin" className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-blue-600 hover:text-white">
-                                <SignIn size={28} />
-
-                                <button className="ms-3">Sign In</button>
-                            </a>
-                        </li>) : (<li>
-                            <button onClick={handleSignOut} className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-blue-600 hover:text-white">
-                                <SignIn size={28} />
-
-                                <button onClick={handleSignOut} className="ms-3">Sign Out</button>
-                            </button>
-                        </li>)}
-                    </ul>
+                    <div>
+                        <ul className="space-y-2 font-medium">
+                            {user.length === 0 ? (<li>
+                                <a href="/signin" className="flex items-center p-2 text-gray-900 rounded-lg group hover:bg-blue-600 hover:text-white">
+                                    <SignIn size={28} />
+                                    <span className="flex-1 ms-3 whitespace-nowrap">Sign In</span>
+                                </a>
+                            </li>) : (
+                                <li>
+                                    <button onClick={handleSignOut} className="flex items-center p-2 text-gray-900 rounded-lg group hover:bg-blue-600 hover:text-white">
+                                        <SignIn size={28} />
+                                        <span className="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
+                                    </button>
+                                </li>
+                            )}
+                        </ul>
+                    </div>
                 </div>
             </aside>
         </div>

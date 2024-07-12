@@ -13,10 +13,10 @@
 <p align="center">Sign In.</p>
 
 <p align="center">
-  <img src="./image/rak.png" width="550" />
+  <img src="./images/Upload.png" width="550" />
 </p>
  
-<p align="center">Profile.</p>
+<p align="center">Uploading Image to database.</p>
 
 ## Installation For Window/RDP
 
