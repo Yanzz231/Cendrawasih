@@ -116,12 +116,12 @@ export default function GalleryProfile() {
         <>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:hidden">
                 {chunkedDataMobile.map((chunk, index) => (
-                    <Library key={index} data={chunk} edit={true} />
+                    <Library key={index} data={chunk} edit={false} />
                 ))}
             </div>
             <div className="sm:grid grid-cols-2 md:grid-cols-4 gap-4 hidden">
                 {chunkedDataPC.map((chunk, index) => (
-                    <Library key={index} data={chunk} edit={true} />
+                    <Library key={index} data={chunk} edit={false} />
                 ))}
             </div>
         </>
