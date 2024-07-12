@@ -8,6 +8,7 @@ export default function Gallery() {
     const [limit, setLimit] = useState(1);
     const [loop, setLoop] = useState(false);
     const [loading, setLoading] = useState(true)
+    const [limitCard, setLimitCard] = useState(3)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,7 +38,7 @@ export default function Gallery() {
     }, []);
 
     const handleData = async () => {
-        const data = { limit: 10 }
+        const data = { limit: 20 }
         const response = await fetch("/api/checkpost", {
             method: "POST",
             body: JSON.stringify(data)
@@ -52,21 +53,31 @@ export default function Gallery() {
     }, [])
 
     const chunkData = (data, size) => {
-        return data.reduce((acc, _, index) => {
-            const chunkIndex = Math.floor(index / size);
-            if (!acc[chunkIndex]) {
-                acc[chunkIndex] = [];
-            }
-            acc[chunkIndex].push(_);
-            return acc;
-        }, []);
+        const chunked = [];
+        for (let i = 0; i < size; i++) {
+            chunked[i] = [];
+        }
+        data.forEach((item, index) => {
+            chunked[index % size].push(item);
+        });
+        return chunked;
     };
 
-    const chunkedData = chunkData(data, 3);
+    const chunkedDataMobile = chunkData(data, 2);
+    const chunkedDataPC = chunkData(data, 4);
 
     return (
-        chunkedData.map((chunk, index) => (
-            <Library key={index} data={chunk} />
-        ))
+        <>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:hidden">
+                {chunkedDataMobile.map((chunk, index) => (
+                    <Library key={index} data={chunk} />
+                ))}
+            </div>
+            <div className="sm:grid grid-cols-2 md:grid-cols-4 gap-4 hidden">
+                {chunkedDataPC.map((chunk, index) => (
+                    <Library key={index} data={chunk} />
+                ))}
+            </div>
+        </>
     )
 }

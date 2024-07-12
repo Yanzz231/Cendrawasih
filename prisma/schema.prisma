@@ -30,6 +30,7 @@ model like_history {
 
 model post {
   id          Int     @id @default(autoincrement())
+  id_user     Int
   image       String?
   title       String
   description String

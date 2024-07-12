@@ -10,9 +10,7 @@ export default function Home() {
             <div className="p-4 sm:ml-64">
 
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <Gallery />
-                </div>
+                <Gallery />
 
             </div>
 

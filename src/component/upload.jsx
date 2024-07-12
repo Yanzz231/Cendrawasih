@@ -11,6 +11,7 @@ export default function Upload() {
     const [loading, setLoading] = useState(false)
     const [input, setInput] = useState("")
     const [input1, setInput1] = useState("")
+    const [uploadProgress, setUploadProgress] = useState(0)
 
     const router = useRouter()
     const inputRef = useRef()
@@ -25,7 +26,7 @@ export default function Upload() {
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        if (file.size > 5242880) { 
+        if (file.size > 5242880) {
             return textPopUp("Error", "Biggest Size File", "error")
         }
         if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
@@ -45,6 +46,11 @@ export default function Upload() {
             const response = await fetch('https://api.imgbb.com/1/upload?key=3d0f5fadf460e330e7b5a112a0df68db', {
                 method: 'POST',
                 body: formData,
+                onprogress: (e) => {
+                    console.log(e)
+                    const progress = Math.round((e.loaded * 100) / e.total);
+                    setUploadProgress(progress);
+                },
             });
 
             if (!response.ok) {
@@ -64,9 +70,10 @@ export default function Upload() {
             setFile(null)
             setInput("")
             setInput1("")
-            setLoading(false)
+            setUploadProgress(0)
         } catch (error) {
             console.error('Error uploading file:', error);
+            textPopUp("Error", "Upload failed", "error")
         } finally {
             setLoading(false)
         }
@@ -74,10 +81,8 @@ export default function Upload() {
 
     useEffect(() => {
         if (loading) {
-            document.body.style.overflow = 'hidden';
             window.onbeforeunload = () => 'Tidak dapat meninggalkan halaman saat ini karena sedang dalam proses upload.';
         } else {
-            document.body.style.overflow = 'auto';
             window.onbeforeunload = null;
         }
     }, [loading]);
@@ -102,14 +107,26 @@ export default function Upload() {
                         <img src={preview} alt="Preview" className="w-full sm:w-1/2 rounded-lg" />
                     </div>
                 )}
-                <div className="mb-2 mt-8 flex  justify-center">
-                    <input ref={inputRef} value={input} onChange={handleInput} type="text" id="large-input" className="px-1/2 w-full sm:w-1/2 border p-4 flex justify-center text-gray-900 border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 " placeholder="Add a title"></input>
+                <div className="mb-2 mt-8 flex justify-center">
+                    <input ref={inputRef} value={input} onChange={handleInput} type="text" id="large-input" className="px-1/2 w-full sm:w-1/2 border p-4 flex justify-center text-gray-900 border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500" placeholder="Add a title"></input>
                 </div>
-                <div className="mb-4 mt-4 mx-1/2 flex  justify-center">
-                    <textarea ref={inputRef} value={input1} onChange={handleInput1} type="text" className="mx-auto w-full sm:w-1/2 border flex justify-center text-gray-900  border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 " placeholder="Description"></textarea>
+                <div className="mb-4 mt-4 mx-1/2 flex justify-center">
+                    <textarea ref={inputRef} value={input1} onChange={handleInput1} type="text" className="mx-auto w-full sm:w-1/2 border flex justify-center text-gray-900 border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500" placeholder="Description"></textarea>
                 </div>
                 <div className="justify-center text-center">
-                    <button type="submit" className="justify-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 w-full sm:w-1/2 text-black bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={handleUpload} disabled={loading}>Post</button>
+                    <button type="submit" className="justify-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 w-full sm:w-1/2 text-black bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" onClick={handleUpload} disabled={loading}>
+                        {loading ? 'Uploading...' : 'Post'}
+                    </button>
+                    {loading && (
+                        <div className="mt-4 flex justify-center items-center">
+                            <div className="relative w-full sm:w-1/2">
+                                <div className="w-full bg-gray-200 h-2 rounded-full">
+                                    <div className="bg-blue-600 h-2 rounded-full" style={{ width: `${uploadProgress}%` }}></div>
+                                </div>
+                                <p className="text-center text-gray-500 mt-2">{uploadProgress}%</p>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </>
