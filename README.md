@@ -13,6 +13,7 @@
 </p>
  
 <p align="center">Sign In.</p>
+<p align="center">We also have Sign Up.</p>
 
 ## Home
 <p align="center">
