@@ -37,7 +37,8 @@ export default function Upload() {
     }
 
     const handleUpload = async () => {
-        if (!file) return;
+        if (!file) return textPopUp("Error", "Please upload image first", "error")
+        if(input.length < 5 || input1.length < 10) return textPopUp("Error", "Fill the empty one", "error")
         const formData = new FormData();
         formData.append('image', file);
         setLoading(true)
