@@ -16,26 +16,45 @@ export default function GalleryProfile() {
 
     const handleData = async (loop) => {
         if (!stopScroll) return
-        const data = { limit: limit, skip: skip, id: user.id }
-        const response = await fetch("/api/checkpost", {
-            method: "POST",
-            body: JSON.stringify(data)
-        })
+        const getAccount = localStorage.getItem('username');
+        const getPassword = localStorage.getItem('password');
 
-        const checkPost = await response.json()
-        if (checkPost.length === undefined) {
-            setStopScroll(false)
-        }
+        if (getAccount !== null || getPassword !== null) {
+            const data1 = { username: getAccount, password: getPassword }
+            const response1 = await fetch("/api/signin", {
+                method: "POST",
+                body: JSON.stringify(data1)
+            })
 
-        if (loop === "loop") {
-            setData(prevData => [...prevData, ...checkPost.data]);
-        } else {
-            setData(checkPost.data)
+            const postData = await response1.json()
+            if (postData.status) {
+                setUser(postData.data[0])
+            }
+
+            const data = { limit: limit, skip: skip, id: postData.data[0].id }
+            const response = await fetch("/api/checkpost", {
+                method: "POST",
+                body: JSON.stringify(data)
+            })
+
+            const checkPost = await response.json()
+            if (checkPost.length === undefined) {
+                setStopScroll(false)
+            }
+
+            if (checkPost.status) {
+                if (loop === "loop") {
+                    setData(prevData => [...prevData, ...checkPost.data]);
+                } else {
+                    setData(checkPost.data)
+                }
+            }
         }
     }
 
     useEffect(() => {
         const fetchData = async () => {
+
             if (first) {
                 handleData()
                 setFirst(false)
@@ -75,13 +94,6 @@ export default function GalleryProfile() {
     }
 
     useEffect(() => {
-        const getAccount = localStorage.getItem('username');
-        const getPassword = localStorage.getItem('password');
-
-        if (getAccount !== null || getPassword !== null) {
-            checkUser(getAccount, getPassword)
-        }
-
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);

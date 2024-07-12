@@ -7,7 +7,6 @@ export async function POST(request) {
             const dataPost = await prisma.post.findMany({ take: data.limit, skip: data.skip, id_user: data.id })
             return Response.json({ status: true, data: dataPost })
         } else {
-
             const dataPost = await prisma.post.findMany({ take: data.limit, skip: data.skip })
             return Response.json({ status: true, data: dataPost })
         }
