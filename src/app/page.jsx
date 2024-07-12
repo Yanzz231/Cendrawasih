@@ -7,7 +7,7 @@ export default function Home() {
         <>
             <SideBar />
 
-            <div className="p-4 sm:ml-64">
+            <div className="p-4 sm:ml-64 bg-gray-50">
 
                 <Gallery />
 

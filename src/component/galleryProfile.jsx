@@ -9,11 +9,12 @@ export default function Gallery() {
     const [loop, setLoop] = useState(false);
     const [first, setFirst] = useState(true);
     const [skip, setSkip] = useState(0)
+    const [user, setUser] = useState([])
 
     const [loading, setLoading] = useState(true)
 
     const handleData = async (loop) => {
-        const data = { limit: limit, skip: skip }
+        const data = { limit: limit, skip: skip, id: user.id }
         const response = await fetch("/api/checkpost", {
             method: "POST",
             body: JSON.stringify(data)
@@ -59,7 +60,27 @@ export default function Gallery() {
         }
     };
 
+    const checkUser = async (user, pass) => {
+        const data = { username: user, password: pass }
+        const response = await fetch("/api/signin", {
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+
+        const postData = await response.json()
+        if (postData.status) {
+            setUser(postData.data[0])
+        }
+    }
+
     useEffect(() => {
+        const getAccount = localStorage.getItem('username');
+        const getPassword = localStorage.getItem('password');
+
+        if (getAccount !== null || getPassword !== null) {
+            checkUser(getAccount, getPassword)
+        }
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);

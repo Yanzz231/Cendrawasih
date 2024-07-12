@@ -6,10 +6,12 @@ export default function page() {
     return (
         <>
             <SideBar />
+            <div className="bg-gray-50 h-screen">
 
-            <h1 className="sm:text-5xl text-xl sm:ml-64 text-center mt-6 mb-6 font-extrabold">Upload your File</h1>
+                <h1 className="sm:text-5xl text-black pt-6 text-xl sm:ml-64 text-center mb-6 font-extrabold">Upload your File</h1>
 
-            <Upload />
+                <Upload />
+            </div>
         </>
     )
 }
