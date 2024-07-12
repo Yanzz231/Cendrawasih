@@ -5,14 +5,16 @@ import Library from "./library"
 
 export default function Gallery() {
     const [data, setData] = useState([])
-    const [limit, setLimit] = useState(20)
+    const [limit, setLimit] = useState(40)
     const [loop, setLoop] = useState(false);
+    const [stopScroll, setStopScroll] = useState(true);
     const [first, setFirst] = useState(true);
     const [skip, setSkip] = useState(0)
 
     const [loading, setLoading] = useState(true)
 
     const handleData = async (loop) => {
+        if (!stopScroll) return
         const data = { limit: limit, skip: skip }
         const response = await fetch("/api/checkpost", {
             method: "POST",
@@ -20,6 +22,10 @@ export default function Gallery() {
         })
 
         const checkPost = await response.json()
+        if (checkPost.length === undefined) {
+            setStopScroll(false)
+        }
+        
         if (loop === "loop") {
             setData(prevData => [...prevData, ...checkPost.data]);
         } else {
@@ -82,12 +88,12 @@ export default function Gallery() {
         <>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:hidden">
                 {chunkedDataMobile.map((chunk, index) => (
-                    <Library key={index} data={chunk} />
+                    <Library key={index} data={chunk} edit={false} />
                 ))}
             </div>
             <div className="sm:grid grid-cols-2 md:grid-cols-4 gap-4 hidden">
                 {chunkedDataPC.map((chunk, index) => (
-                    <Library key={index} data={chunk} />
+                    <Library key={index} data={chunk} edit={false} />
                 ))}
             </div>
         </>

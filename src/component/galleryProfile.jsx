@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react"
 import Library from "./library"
 
-export default function Gallery() {
+export default function GalleryProfile() {
     const [data, setData] = useState([])
-    const [limit, setLimit] = useState(20)
+    const [limit, setLimit] = useState(40)
     const [loop, setLoop] = useState(false);
+    const [stopScroll, setStopScroll] = useState(true);
     const [first, setFirst] = useState(true);
     const [skip, setSkip] = useState(0)
     const [user, setUser] = useState([])
@@ -14,6 +15,7 @@ export default function Gallery() {
     const [loading, setLoading] = useState(true)
 
     const handleData = async (loop) => {
+        if (!stopScroll) return
         const data = { limit: limit, skip: skip, id: user.id }
         const response = await fetch("/api/checkpost", {
             method: "POST",
@@ -21,6 +23,10 @@ export default function Gallery() {
         })
 
         const checkPost = await response.json()
+        if (checkPost.length === undefined) {
+            setStopScroll(false)
+        }
+
         if (loop === "loop") {
             setData(prevData => [...prevData, ...checkPost.data]);
         } else {
@@ -29,18 +35,16 @@ export default function Gallery() {
     }
 
     useEffect(() => {
-        handleData()
-    }, [])
-
-
-    useEffect(() => {
         const fetchData = async () => {
             if (first) {
+                console.log(1)
                 handleData()
                 setFirst(false)
                 setLoading(false)
             }
             if (loop) {
+                console.log(2)
+
                 handleData("loop")
                 setLoop(false)
                 setLoading(false)
@@ -103,12 +107,12 @@ export default function Gallery() {
         <>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:hidden">
                 {chunkedDataMobile.map((chunk, index) => (
-                    <Library key={index} data={chunk} />
+                    <Library key={index} data={chunk} edit={true} />
                 ))}
             </div>
             <div className="sm:grid grid-cols-2 md:grid-cols-4 gap-4 hidden">
                 {chunkedDataPC.map((chunk, index) => (
-                    <Library key={index} data={chunk} />
+                    <Library key={index} data={chunk} edit={true} />
                 ))}
             </div>
         </>

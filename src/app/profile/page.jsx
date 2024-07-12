@@ -1,4 +1,4 @@
-import Gallery from "@/component/gallery"
+import GalleryProfile from "@/component/galleryProfile"
 import Profile from "@/component/profile"
 import SideBar from "@/component/sidebar"
 
@@ -11,8 +11,8 @@ export default function page() {
                 <Profile />
 
                 <div className="p-4 sm:ml-64 bg-gray-50">
-
-                    <Gallery />
+                    <h1 className="text-2xl my-4 font-bold text-black">Your Image</h1>
+                    <GalleryProfile />
 
                 </div>
             </div>

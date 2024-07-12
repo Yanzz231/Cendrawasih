@@ -72,7 +72,7 @@ export default function SideBar() {
                 <div className="h-full px-3 py-4  bg-gray-100 flex justify-between flex-col">
                     <div>
                         <div className="flex justify-center bg-gray items-center mb-4">
-                            <Image className="rounded-lg w-20 h-20" width={350} height={350} src="/image/Logo_Cendrawasih.png" alt="" />
+                            <Image className="rounded-lg w-36 h-28" width={350} height={350} src="/image/Logo_Text.png" alt="" />
                         </div>
                         <ul className="space-y-2 font-medium">
                             <li>
