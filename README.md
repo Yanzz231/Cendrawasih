@@ -6,12 +6,14 @@
  
 <p align="center">Logo.</p>
 
+## Sign In Page
 <p align="center">
   <img src="./images/SignIn.png" width="550" />
 </p>
  
 <p align="center">Sign In.</p>
 
+## Upload Page
 <p align="center">
   <img src="./images/Upload.png" width="550" />
 </p>
