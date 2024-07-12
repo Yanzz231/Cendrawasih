@@ -88,15 +88,15 @@ export default function Signin() {
                 <div className="flex items-center justify-between">
                     <div className="flex items-start">
                         <div className="flex items-center h-5">
-                            <input id="rememberme" aria-describedby="rememberme" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300" required="" />
+                            <input id="rememberme" aria-describedby="rememberme" type="checkbox" className="w-4 h-4 border border-gray-400   rounded bg-gray-50 focus:ring-3 focus:ring-primary-300" required="" />
                         </div>
                         <div className="ml-3 text-sm">
-                            <label htmlFor="remember" className="text-gray-500 p-1">Remember me</label>
+                            <label htmlFor="remember" className="text-gray-900 p-1">Remember me</label>
                         </div>
                     </div>
                     <a href="#" className="text-sm font-medium text-primary-600 hover:underline ">Forgot password?</a>
                 </div>
-                <button type="submit" className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 w-full text-black bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign In</button>
+                <button type="submit" className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 w-full text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign In</button>
                 <p className="text-sm font-light text-black ">
                     Don’t have an account yet? <a href="/signup" className="font-medium text-primary-800 hover:underline ">Sign up</a>
                 </p>

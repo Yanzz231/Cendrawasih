@@ -3,8 +3,8 @@ import Image from "next/image"
 
 export default function page() {
     return (
-        <section className="bg-gray-700">
-            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <section className="bg-indigo-200">
+            <div className="flex flex-col items-center justify-center px-4 py-6 mx-auto ">
                 <div className="w-full bg-white rounded-lg border md:mt-0 sm:max-w-md xl:p-0 border-gray-700">
                     <div>
                         <div className="flex items-center pt-4 justify-center">

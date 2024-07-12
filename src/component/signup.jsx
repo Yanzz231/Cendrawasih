@@ -99,9 +99,9 @@ export default function SignUp() {
                 <div>
                     <label htmlFor="confirmpassword" className="block mb-2 text-sm font-medium text-black">Confirm Your Password</label>
                     <input ref={searchRef} value={input3} onChange={handleInput3} type="password" name="confrimpassword" id="confirmpassword" placeholder="*******" className="bg-gray-50 border text-black border-gray-400  rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required="" />
-                </div>
+                    </div>
 
-                <button type="submit" className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 w-full text-black bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign Up</button>
+                <button type="submit" className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 w-full text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign Up</button>
                 <p className="text-sm font-light text-black ">
                     Already have account? <a href="/signin" className="font-medium text-primary-800 hover:underline ">Login</a>
                 </p>
