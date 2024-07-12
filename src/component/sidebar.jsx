@@ -48,7 +48,7 @@ export default function SideBar() {
 
         const getAccount = localStorage.getItem('username');
         const getPassword = localStorage.getItem('password');
-
+        
         if (getAccount !== null || getPassword !== null) {
             checkUser(getAccount, getPassword)
         }

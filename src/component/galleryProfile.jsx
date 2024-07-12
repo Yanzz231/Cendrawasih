@@ -31,7 +31,7 @@ export default function GalleryProfile() {
                 setUser(postData.data[0])
             }
 
-            const data = { limit: limit, skip: skip, id: postData.data[0].id }
+            const data = { limit: limit, skip: skip, id: postData.data[0]?.id }
             const response = await fetch("/api/checkpost", {
                 method: "POST",
                 body: JSON.stringify(data)
