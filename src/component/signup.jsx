@@ -1,13 +1,15 @@
 "use client"
 
 import { textPopUp } from "@/libs/swal"
-import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { useState, useEffect } from "react"
 import { useRef } from "react"
 
 
 export default function SignUp() {
 
     const searchRef = useRef()
+    const router = useRouter()
 
     const [input, setInput] = useState("")
     const [input1, setInput1] = useState("")
@@ -41,12 +43,40 @@ export default function SignUp() {
         })
         const postUser = await response.json()
         if (postUser.status) {
-
+            router.replace("/signin")
+            setInput("")
+            setInput1("")
+            setInput2("")
+            setInput3("")
         } else {
             if (postUser.type === "username") return textPopUp("Error", "Username Already used", "error")
             if (postUser.type === "email") return textPopUp("Error", "Email Already used", "error")
         }
     }
+
+    const checkUser = async (user, pass) => {
+        const data = { username: user, password: pass }
+        const response = await fetch("/api/signin", {
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+
+        const postData = await response.json()
+        if (postData.status) {
+            router.replace("/")
+        }
+    }
+
+    useEffect(() => {
+        const getAccount = localStorage.getItem('username');
+        const getPassword = localStorage.getItem('password');
+
+        if (getAccount !== null || getPassword !== null) {
+            checkUser(getAccount, getPassword)
+        }
+
+
+    }, [router])
 
     return (
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

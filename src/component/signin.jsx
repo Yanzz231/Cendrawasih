@@ -1,8 +1,9 @@
 "use client"
 
+import { prisma } from "@/libs/prisma"
 import { textPopUp } from "@/libs/swal"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRef } from "react"
 
 
@@ -32,14 +33,43 @@ export default function Signin() {
         })
 
         const postUser = await response.json()
-        if(postUser.status) {
+        if (postUser.status) {
+            localStorage.setItem("username", input)
+            localStorage.setItem("password", input1)
             router.replace("/")
-        } else if(postUser.type === "user") {
+        } else if (postUser.type === "user") {
             textPopUp("Error", "Username Doesn't Exist", "error")
         } else {
             textPopUp("Error", "Username Doesn't Exist", "error")
         }
     }
+
+    const checkUser = async (user, pass) => {
+        const data = { username: user, password: pass }
+        const response = await fetch("/api/signin", {
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+
+        const postData = await response.json()
+        if (postData.status) {
+            router.replace("/")
+            setInput("")
+            setInput1("")
+        }
+    }
+
+    useEffect(() => {
+        const getAccount = localStorage.getItem('username');
+        const getPassword = localStorage.getItem('password');
+        
+        if (getAccount !== null || getPassword !== null) {
+            checkUser(getAccount, getPassword)
+        }
+
+
+
+    }, [router])
 
     return (
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

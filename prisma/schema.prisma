@@ -29,8 +29,11 @@ model like_history {
 }
 
 model post {
-  id   Int    @id @default(autoincrement())
-  like Int
+  id          Int     @id @default(autoincrement())
+  image       String?
+  title       String
+  description String
+  like        Int
 }
 
 model comment_post {

@@ -13,7 +13,7 @@ export async function POST(request) {
         })
 
         if (user.length === 0) return Response.json({ status: false, type: "user", data: data })
-        else return Response.json({ status: true, data: data })
+        else return Response.json({ status: true, data: user })
 
     } else {
         return Response.json({ status: true, data: data })
