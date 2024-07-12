@@ -2,6 +2,16 @@ import GalleryProfile from "@/component/galleryProfile"
 import Profile from "@/component/profile"
 import SideBar from "@/component/sidebar"
 
+export const metadata = {
+    title: "Profile - Cendrawasih",
+    description: "Website Cendrawasih",
+    icons: {
+        icon: "/image/Logo_Cendrawasih.png",
+        shortcut: "/image/Logo_Cendrawasih.png",
+        apple: "/image/Logo_Cendrawasih.png"
+    }
+  };
+
 export default function page() {
     return (
         <div className="bg-gray-50">

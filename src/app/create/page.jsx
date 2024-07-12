@@ -1,6 +1,15 @@
 import SideBar from "@/component/sidebar"
 import Upload from "@/component/upload"
-import Image from "next/image"
+
+export const metadata = {
+    title: "Upload - Cendrawasih",
+    description: "Website Cendrawasih",
+    icons: {
+        icon: "/image/Logo_Cendrawasih.png",
+        shortcut: "/image/Logo_Cendrawasih.png",
+        apple: "/image/Logo_Cendrawasih.png"
+    }
+};
 
 export default function page() {
     return (

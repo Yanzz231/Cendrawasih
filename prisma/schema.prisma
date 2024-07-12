@@ -41,10 +41,12 @@ model comment_post {
   id_post    Int // 3
   id_comment Int    @id @default(autoincrement())
   value      String
+  time       Int
 }
 
 model comment_post_replay {
   id_post    Int
   id_comment Int    @id
   value      String
+  time       Int
 }

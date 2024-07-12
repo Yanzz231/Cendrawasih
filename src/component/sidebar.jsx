@@ -53,6 +53,10 @@ export default function SideBar() {
             checkUser(getAccount, getPassword)
         }
 
+        if (getAccount === null || getPassword === null) {
+            router.replace("/signin")
+        }
+
         document.addEventListener("mousedown", handleClickOutside)
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)

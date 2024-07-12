@@ -1,6 +1,16 @@
 import SignUp from "@/component/signup"
 import Image from "next/image"
 
+export const metadata = {
+    title: "Sign Up - Cendrawasih",
+    description: "Website Cendrawasih",
+    icons: {
+        icon: "/image/Logo_Cendrawasih.png",
+        shortcut: "/image/Logo_Cendrawasih.png",
+        apple: "/image/Logo_Cendrawasih.png"
+    }
+};
+
 export default function page() {
     return (
         <section className="bg-gray-50 h-screen">
