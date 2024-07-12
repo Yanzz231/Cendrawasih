@@ -12,9 +12,32 @@ export default function Upload() {
     const [input, setInput] = useState("")
     const [input1, setInput1] = useState("")
     const [uploadProgress, setUploadProgress] = useState(0)
+    const [user, setUser] = useState([])
 
     const router = useRouter()
     const inputRef = useRef()
+
+    const checkUser = async (user, pass) => {
+        const data = { username: user, password: pass }
+        const response = await fetch("/api/signin", {
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+
+        const postData = await response.json()
+        setUser(postData.data[0])
+    }
+
+    useEffect(() => {
+        const getAccount = localStorage.getItem('username');
+        const getPassword = localStorage.getItem('password');
+
+        if (getAccount !== null || getPassword !== null) {
+            checkUser(getAccount, getPassword)
+        }
+
+
+    }, [router])
 
     const handleInput = (event) => {
         setInput(event.target.value)
@@ -38,7 +61,7 @@ export default function Upload() {
 
     const handleUpload = async () => {
         if (!file) return textPopUp("Error", "Please upload image first", "error")
-        if(input.length < 5 || input1.length < 10) return textPopUp("Error", "Fill the empty one", "error")
+        if (input.length < 5 || input1.length < 10) return textPopUp("Error", "Fill the empty one", "error")
         const formData = new FormData();
         formData.append('image', file);
         setLoading(true)
@@ -60,7 +83,8 @@ export default function Upload() {
 
             const data = await response.json();
 
-            const dataPost = { image: data.data.url.replace("https://i.ibb.co", "https://i.ibb.co.com"), title: input, description: input1, like: 0 }
+            const dataPost = { image: data.data.url.replace("https://i.ibb.co", "https://i.ibb.co.com"), title: input, description: input1, like: 0, id_user: user.id}
+            console.log(dataPost)
             const responsePost = await fetch('/api/post/', {
                 method: "POST",
                 body: JSON.stringify(dataPost)

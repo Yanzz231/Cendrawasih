@@ -90,7 +90,7 @@ export default function SignUp() {
                 </div>
                 <div>
                     <label htmlFor="username" className="block mb-2 text-sm font-medium  text-black">Your Username</label>
-                    <input ref={searchRef} value={input1} onChange={handleInput1} type="text" name="username" id="username" className="bg-gray-50 border border-gray-400 text-black  rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="User@gmail.com" required="" />
+                    <input ref={searchRef} value={input1} onChange={handleInput1} type="text" name="username" id="username" className="bg-gray-50 border border-gray-400 text-black  rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Mark" required="" />
                 </div>
                 <div>
                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-black">Your Password</label>
