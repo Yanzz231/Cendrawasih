@@ -12,6 +12,6 @@ export async function POST(request) {
 
         return Response.json({ status: true, data: checkData })
     } catch (error) {
-        return Response.json({ status: false, data: checkData })
+        return Response.json({ status: false, data: error })
     }
 }

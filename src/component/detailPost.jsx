@@ -136,7 +136,7 @@ export default function DetailPost({ id }) {
                 const likeData2 = { id_post: getPost.data[0].id }
                 const response4 = await fetch("/api/allcomment/", {
                     method: "POST",
-                    body: JSON.stringify(likeData1)
+                    body: JSON.stringify(likeData2)
                 })
                 const resultData3 = await response4.json()
                 if (resultData3.data.length !== 0) {
