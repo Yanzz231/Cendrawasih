@@ -14,7 +14,7 @@ export default function DetailPost({ id }) {
             })
 
             const getPost = await response.json()
-            setData(getPost)
+            setData(getPost.data[0])
         }
         handleGet()
     }, [])
@@ -22,7 +22,7 @@ export default function DetailPost({ id }) {
     return (
         <div className=" bg-gray-50 h-screen">
             <div className="flex justify-center items-center">
-                <Image className="rounded-lg mt-4" src="/image/Dummy.jpg" alt="image description" width={350} height={350} />
+                <Image className="rounded-lg mt-4" src={data.image} alt="image description" width={350} height={350} />
             </div>
 
             <div className="flex overflow-y-auto justify-center mt-3">
